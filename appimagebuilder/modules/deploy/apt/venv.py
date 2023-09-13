@@ -223,7 +223,7 @@ class Venv:
 
         path = self._apt_archives_path / package.get_expected_file_name()
 
-        command = " ".join([str(self._deps["dpkg-deb"]), "-x", str(path), str(target)])
+        command = [str(self._deps["dpkg-deb"]), "-x", str(path), str(target)]
         self.logger.debug(command)
         output = subprocess.run(command, shell=True, env=self._get_environment())
         shell.assert_successful_result(output)
